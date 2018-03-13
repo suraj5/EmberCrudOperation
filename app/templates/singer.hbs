@@ -1,0 +1,63 @@
+<form class="form-group">
+    <div class="form-check form-check-inline">
+        <input type="radio" name="title" value="Bollywood" class="form-check-input form-inline"><label class="form-check-label" style="margin-left:5px;">Bollywood</label>
+        <input type="radio" name="title" value="Tamil" class="form-check-input form-inline" style="margin-left:5px;"> <label class="form-check-label" style="margin-left:5px;">Tamil</label>
+        <input type="radio" name="title"  value="Telugu" class="form-check-input form-inline" style="margin-left:5px;"><label class="form-check-label" style="margin-left:5px;">Telugu</label>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label test">Singer Name</label>
+        <div><input type="text" class="form-control" value="" name="singer"/></div>
+    </div>
+    <div class="form-group">
+        <button type="submit" {{action 'saveRecord'}} class="btn btn-primary">Submit</button>
+    </div>
+</form>    
+
+<div class="flash-messages">
+        {{#each flashMessages.queue as |flash|}}
+            {{flash-message flash=flash}}
+        {{/each}}
+</div>    <div>
+        <table class="table table-striped table-hover">
+            <thead class="">
+                 <tr>
+                   <th>Title</th>
+                   <th>Singer</th>
+                   <th>Action</th>
+                 </tr>
+            </thead>
+          <tbody>
+              {{#each model.singerList as |member|}}
+               <tr>
+                   <td>{{member.title}}</td>
+                   <td>{{member.singer}}</td>   
+                   <td>
+                       <button type="button" class="btn btn-danger" {{ action "deleteSinger" member}}>Delete</button>
+                       <button type="button" class="btn btn-success" {{ action "transitionToUpdateSinger" member}}><a style="color:white">Update</a></button> 
+                   </td>
+               </tr>
+               {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+<!--
+    <div class="row col-md-10 col-md-offset-2 form-group">
+        <p class="text-success">Singer updated successfully for {{clickedTitle}}</p>
+    </div>
+
+    <div id="heroDetailComponentDetails" class="invisible">
+        <div class="container">
+            <div class="row form-group col-md-10 col-md-offset-2">
+                <p class="bg-primary">Change for {{clickedTitle}} Title</p>
+                <div class="row col-md-10 col-md-offset-2 form-group">
+                    <input type="text" id="singer" name="singer"/>
+                </div>
+                <div class="row col-md-10 col-md-offset-2 form-group">
+                    <input type="submit" value="submit"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
